@@ -1,0 +1,34 @@
+{
+  auto_https off
+}
+
+:8000 {
+  # Путь до корня статики. Если запускаете на сервере, пропишите абсолютный путь.
+  root * .
+
+  encode zstd gzip
+  try_files {path} {path}/ /index.html
+  file_server
+
+  # CORS для API-запросов из фронтенда.
+  @api path /api/*
+  header @api Access-Control-Allow-Origin "*"
+  header @api Access-Control-Allow-Methods "GET, POST, OPTIONS"
+  header @api Access-Control-Allow-Headers "Content-Type, Authorization"
+
+  @options method OPTIONS
+  respond @options 204
+
+  # Проксирование служебных API. Замените адреса на ваши реальные backend-службы.
+  handle_path /api/uptimekuma* {
+    reverse_proxy http://127.0.0.1:3001
+  }
+
+  handle_path /api/payments/yookassa* {
+    reverse_proxy http://127.0.0.1:4000
+  }
+
+  handle_path /api/remnawave/subscriptions* {
+    reverse_proxy http://127.0.0.1:5000
+  }
+}
