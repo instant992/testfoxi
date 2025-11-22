@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FoxCloud VPN</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">FoxCloud</div>
+    <nav>
+      <a href="#plans">Тарифы</a>
+      <a href="#servers">Сервера</a>
+      <a href="#how">Как это работает</a>
+      <a href="#cta" class="primary">Получить VPN</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="cta">
+      <div class="hero__content">
+        <div class="pill">VPN, который работает везде</div>
+        <h1>FoxCloud — единый вход к защищённому интернету</h1>
+        <p>Универсальные клиенты для всех систем, автоматическое подключение к быстрым серверам и гибкие подписки. Ваша приватность и скорость под надёжной защитой.</p>
+        <div class="hero__actions">
+          <button class="btn primary" data-plan="trial" onclick="openPurchaseModal('trial')">Попробовать 1 час</button>
+          <button class="btn ghost" onclick="document.getElementById('plans').scrollIntoView({behavior: 'smooth'})">Выбрать тариф</button>
+        </div>
+        <ul class="hero__points">
+          <li>Работает на iOS, Android, macOS, Windows и Linux</li>
+          <li>Подключение через RemnaWave API для мгновенной выдачи подписок</li>
+          <li>ЮKassa для оплаты без лишних шагов</li>
+        </ul>
+      </div>
+      <div class="hero__card">
+        <div class="glow"></div>
+        <div class="card__header">
+          <span class="dot dot--green"></span>
+          <span class="dot dot--yellow"></span>
+          <span class="dot dot--red"></span>
+        </div>
+        <div class="card__body">
+          <p class="accent">Secure Tunnel</p>
+          <h3>FoxCloud VPN</h3>
+          <div class="card__grid">
+            <div>
+              <small>Протокол</small>
+              <p>VLESS</p>
+            </div>
+            <div>
+              <small>Шифрование</small>
+              <p>ChaCha20</p>
+            </div>
+            <div>
+              <small>Сервера</small>
+              <p id="server-count">—</p>
+            </div>
+            <div>
+              <small>Uptime</small>
+              <p id="avg-uptime">—</p>
+            </div>
+          </div>
+          <button class="btn full" onclick="openPurchaseModal('month')">Начать с месяца</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="section__header">
+        <p class="pill">Почему FoxCloud</p>
+        <h2>Оптимизировано под любые устройства</h2>
+        <p>Автоподбор ближайших узлов, конфигурации под iOS, Android, macOS, Windows и Linux, и моментальная активация через RemnaWave API.</p>
+      </div>
+      <div class="feature-grid">
+        <article class="feature">
+          <div class="icon">🔒</div>
+          <h3>Безопасность</h3>
+          <p>VLESS-тоннель с TLS-шифрованием и автоматическими обновлениями ключей защищает сессии даже в общественных сетях.</p>
+        </article>
+        <article class="feature">
+          <div class="icon">⚡</div>
+          <h3>Скорость</h3>
+          <p>Маршрутизация через оптимальные точки выхода, чтобы потоковое видео, игры и загрузки шли без задержек.</p>
+        </article>
+        <article class="feature">
+          <div class="icon">🌍</div>
+          <h3>Глобальные узлы</h3>
+          <p>Сервера по всему миру. Карточка статусов обновляется из Uptime Kuma, чтобы вы видели реальную доступность.</p>
+        </article>
+        <article class="feature">
+          <div class="icon">🤝</div>
+          <h3>Простая оплата</h3>
+          <p>ЮKassa принимает карты и кошельки. После успешной оплаты RemnaWave выдаёт конфиг и отправляет его на почту.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section--muted" id="plans">
+      <div class="section__header">
+        <p class="pill">Тарифы</p>
+        <h2>Выберите нужный срок</h2>
+        <p>Все подписки активируются автоматически. Можно начать с теста на час или сразу перейти на долгий доступ.</p>
+      </div>
+      <div class="plans">
+        <div class="plan">
+          <p class="pill">Тест</p>
+          <h3>1 час</h3>
+          <p class="price">0 ₽</p>
+          <ul>
+            <li>Мгновенная активация</li>
+            <li>Полный функционал</li>
+            <li>Удобно проверить скорость</li>
+          </ul>
+          <button class="btn full" onclick="openPurchaseModal('trial')">Получить</button>
+        </div>
+        <div class="plan plan--primary">
+          <p class="pill">Популярно</p>
+          <h3>1 месяц</h3>
+          <p class="price">990 ₽</p>
+          <ul>
+            <li>Лучший выбор для регулярного использования</li>
+            <li>Доступ ко всем узлам</li>
+            <li>Поддержка 24/7</li>
+          </ul>
+          <button class="btn full" onclick="openPurchaseModal('month')">Купить</button>
+        </div>
+        <div class="plan">
+          <p class="pill">Оптимально</p>
+          <h3>2 месяца</h3>
+          <p class="price">1890 ₽</p>
+          <ul>
+            <li>Экономия по сравнению с помесячной оплатой</li>
+            <li>Автопродление по желанию</li>
+            <li>Приоритетная поддержка</li>
+          </ul>
+          <button class="btn full" onclick="openPurchaseModal('two_months')">Купить</button>
+        </div>
+        <div class="plan">
+          <p class="pill">Максимум</p>
+          <h3>3 месяца</h3>
+          <p class="price">2690 ₽</p>
+          <ul>
+            <li>Для тех, кто знает ценность стабильности</li>
+            <li>Лучшее соотношение цена/срок</li>
+            <li>Подарочные промокоды внутри</li>
+          </ul>
+          <button class="btn full" onclick="openPurchaseModal('three_months')">Купить</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="servers">
+      <div class="section__header">
+        <p class="pill">Онлайн статус</p>
+        <h2>Сервера FoxCloud сейчас</h2>
+        <p>Данные подтягиваются из вашей инсталляции Uptime Kuma, чтобы вы видели актуальную картину.</p>
+      </div>
+      <div id="server-status" class="status-grid"></div>
+      <div class="note">Если сервис недоступен, мы автоматически исключаем его из выдачи конфигов.</div>
+    </section>
+
+    <section class="section section--muted" id="how">
+      <div class="section__header">
+        <p class="pill">Как подключиться</p>
+        <h2>От кнопки до конфигурации — 3 шага</h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step__number">1</div>
+          <div>
+            <h3>Выберите тариф</h3>
+            <p>Нажмите «Купить», укажите почту и подтвердите оплату через ЮKassa.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step__number">2</div>
+          <div>
+            <h3>Мгновенная активация</h3>
+            <p>После успешной оплаты фронтенд отправит запрос в RemnaWave API, создаст пользователя и назначит подписку.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step__number">3</div>
+          <div>
+            <h3>Получите конфиг</h3>
+            <p>Ссылка с готовым конфигом и инструкцией придёт на указанную почту. Остаётся импортировать его в клиент.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div>
+      <h4>FoxCloud</h4>
+      <p>Честный VPN для любых устройств. Подключайтесь и оставайтесь защищёнными.</p>
+    </div>
+    <div>
+      <p class="muted">Поддержка</p>
+      <p>support@foxcloud.vpn</p>
+    </div>
+    <div>
+      <p class="muted">API</p>
+      <p>RemnaWave • Uptime Kuma • ЮKassa</p>
+    </div>
+  </footer>
+
+  <div id="purchase-modal" class="modal" aria-hidden="true">
+    <div class="modal__backdrop" onclick="closePurchaseModal()"></div>
+    <div class="modal__content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal__close" aria-label="Закрыть" onclick="closePurchaseModal()">×</button>
+      <p class="pill" id="modal-plan-label">Тариф</p>
+      <h3 id="modal-title">Оформление подписки</h3>
+      <p>Укажите почту — на неё придёт ссылка на оплату и готовый конфиг после подтверждения.</p>
+      <form id="purchase-form">
+        <label for="email">Почта</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required />
+        <button type="submit" class="btn full">Перейти к оплате</button>
+      </form>
+      <p class="muted" id="form-note"></p>
+      <div class="alert" id="form-alert" hidden></div>
+    </div>
+  </div>
+
+  <script src="assets/script.js"></script>
+</body>
+</html>
